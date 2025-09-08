@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <header>
-      <div className="flex justify-center items-center sm:justify-end py-2">
+      <div className="align-element flex justify-center items-center sm:justify-end py-2">
         {/* {User} */}
         {user ? (
           <div className="flex gap-x-2 sm:gap-x-8 items-center">
@@ -25,6 +25,7 @@ export default function Header() {
           </div>
         ) : (
           <div className="flex gap-6 justify-center items-center -mr-4">
+            {/*  https://ui.shadcn.com/docs/components/button => asChild 옵션은 하위 컴포넌트를 버튼처럼 보이게 한다. */}
             <Button asChild variant="link" size="sm">
               <Link to="/login">Sign in / Guest</Link>
             </Button>

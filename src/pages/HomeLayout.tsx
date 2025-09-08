@@ -5,7 +5,7 @@ export default function HomeLayout() {
   return (
     <>
       <Header />
-      <nav>navbar</nav>
+      <div className="align-element py-20">navbar</div>
       <Outlet />
     </>
   );
