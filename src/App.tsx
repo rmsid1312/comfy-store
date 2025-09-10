@@ -15,7 +15,7 @@ import {
   Checkout,
   Orders,
 } from "./pages";
-
+import { ErrorComponent } from "./components";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,30 +25,37 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "products",
         element: <Products />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "product/:id",
         element: <SingleProduct />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "cart",
         element: <Cart />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "about",
         element: <About />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "checkout",
         element: <Checkout />,
+        errorElement: <ErrorComponent />,
       },
       {
         path: "orders",
         element: <Orders />,
+        errorElement: <ErrorComponent />,
       },
     ],
   },
