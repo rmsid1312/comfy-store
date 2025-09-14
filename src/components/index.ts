@@ -6,3 +6,8 @@ export { default as ModeToggle } from "./ModeToggle";
 export { default as Navbar } from "./Navbar";
 export { default as NavLinks } from "./NavLinks";
 export { default as ErrorComponent } from "./ErrorComponent";
+export { default as FeatureProduct } from "./FeatureProduct";
+export { default as Hero } from "./Hero";
+export { default as ProductGrid } from "./ProductGrid";
+export { default as HeroCarousel } from "./HeroCarousel";
+export { default as SectionTitle } from "./SectionTitle";
