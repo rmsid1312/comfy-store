@@ -1,3 +1,11 @@
+import ProductGrid from "./ProductGrid";
+import SectionTitle from "./SectionTitle";
+
 export default function FeatureProduct() {
-  return <div>FeatureProduct</div>;
+  return (
+    <section className="pt-24">
+      <SectionTitle text="featured products" />
+      <ProductGrid />
+    </section>
+  );
 }
