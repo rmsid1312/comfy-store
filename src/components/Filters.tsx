@@ -2,6 +2,7 @@ import { Form, Link, useLoaderData } from "react-router-dom";
 import { Button } from "./ui/button";
 import type { ProductsResponseWithParams } from "../utils";
 import FormInput from "./FormInput";
+import FormSelect from "./FormSelect";
 
 export default function Filters() {
   console.log(useLoaderData() as ProductsResponseWithParams);
@@ -10,13 +11,36 @@ export default function Filters() {
 
   return (
     <Form className="border rounded-md px-8 py-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid gap-4">
-      {/* {search} */}
+      {/* SEARCH */}
       <FormInput
         type="search"
         label="search product"
         name="search"
         defaultValue=""
       />
+      {/* CATEGORIES */}
+      <FormSelect
+        label="select category"
+        name="category"
+        options={meta.categories}
+        defaultValue=""
+      />
+      {/* COMPANIES */}
+      <FormSelect
+        label="select companies"
+        name="company"
+        options={meta.companies}
+        defaultValue=""
+      />
+
+      {/* ORDER */}
+      <FormSelect
+        label="order by"
+        name="order"
+        options={["a-z", "z-a", "high", "low"]}
+        defaultValue=""
+      />
+
       <Button type="submit" size="sm" className="mb-2 self-end ">
         search
       </Button>

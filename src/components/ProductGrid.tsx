@@ -5,7 +5,7 @@ import { type ProductsResponse } from "../utils";
 
 export default function ProductGrid() {
   const { data: products } = useLoaderData() as ProductsResponse;
-  console.log(products);
+
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
