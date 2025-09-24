@@ -1,4 +1,4 @@
-export const formatAsDollars = (price: string | number): string => {
+export const formatAsDollars = (price: string | number | undefined): string => {
   const dollarsAmount = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
