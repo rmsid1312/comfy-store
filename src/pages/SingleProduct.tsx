@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { SelectProductAmount, SelectProductColor } from "../components";
+import { Mode } from "../components/SelectProductAmount";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const response = await customFetch<SingleProductResponse>(
@@ -61,7 +62,11 @@ export default function SingleProduct() {
             setProductColor={setProductColor}
           />
           {/* Amount */}
-          <SelectProductAmount />
+          <SelectProductAmount
+            mode={Mode.SingleProduct}
+            amount={amount}
+            setAmount={setAmount}
+          />
           {/* Cart Button */}
           <Button size="lg" className="mt-10" onClick={addToCart}>
             Add to bag
