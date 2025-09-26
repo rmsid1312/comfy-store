@@ -1,11 +1,17 @@
 import { Link, useLoaderData, type LoaderFunction } from "react-router-dom";
-import { customFetch, type SingleProductResponse } from "../utils";
+import {
+  customFetch,
+  type CartItem,
+  type SingleProductResponse,
+} from "../utils";
 import { formatAsDollars } from "../utils/formatAsDollars";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { SelectProductAmount, SelectProductColor } from "../components";
 import { Mode } from "../components/SelectProductAmount";
+import { useAppDispatch } from "../hooks";
+import { addItems } from "../features/cart/cartSlice";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const response = await customFetch<SingleProductResponse>(
@@ -23,10 +29,22 @@ export default function SingleProduct() {
   const dollarsAmount = formatAsDollars(price);
   const [productColor, setProductColor] = useState(colors[0]);
   const [amount, setAmount] = useState(1);
+  const dispatch = useAppDispatch();
+  const cartProduct: CartItem = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company,
+  };
 
   const addToCart = () => {
-    console.log("add to cart");
+    dispatch(addItems(cartProduct));
   };
+
   return (
     <section>
       <div className="flex gap-x-2 h-6 items-center">
