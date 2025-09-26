@@ -49,9 +49,21 @@ const cartSlice = createSlice({
         (item) => item.cartID !== cartItem.cartID
       );
       cartSlice.caseReducers.calculateTotals(state);
-      toast({ description: "Item remove to cart" });
+      toast({ description: "Item remove to cart." });
     },
-    editItems: () => {},
+    editItems: (
+      state,
+      action: PayloadAction<{ cartID: string; amount: number }>
+    ) => {
+      const { cartID, amount } = action.payload;
+      const cartItem = state.cartItems.find((item) => item.cartID === cartID);
+      if (!cartItem) return;
+      state.numItemsInCart += amount - cartItem.amount;
+      state.cartTotal += Number(cartItem.price) * (amount - cartItem.amount);
+      cartItem.amount = amount;
+      cartSlice.caseReducers.calculateTotals(state);
+      toast({ description: "Updated cartItem." });
+    },
     calculateTotals: (state) => {
       state.tax = state.cartTotal * 0.1;
       state.orderTotal = state.cartTotal + state.shipping + state.tax;
