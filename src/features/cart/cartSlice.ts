@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { CartState } from "../../utils";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { CartItem, CartState } from "../../utils";
+import { toast } from "../../hooks/use-toast";
 
 const initialState: CartState = {
   cartItems: [],
@@ -19,11 +20,29 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItems: () => {},
+    addItems: (state, action: PayloadAction<CartItem>) => {
+      const newCartItem = action.payload;
+      const item = state.cartItems.find(
+        (item) => item.cartID === newCartItem.cartID
+      );
+      if (item) {
+        item.amount += newCartItem.amount;
+      } else {
+        state.cartItems.push(newCartItem);
+      }
+      state.numItemsInCart += newCartItem.amount;
+      state.cartTotal += Number(newCartItem.price) * newCartItem.amount;
+      cartSlice.caseReducers.calculateTotals(state);
+      toast({ description: "Item add to cart." });
+    },
     clearItems: () => {},
     removeItems: () => {},
     editItems: () => {},
-    calculateTotals: () => {},
+    calculateTotals: (state) => {
+      state.tax = state.cartTotal * 0.1;
+      state.orderTotal = state.cartTotal + state.shipping + state.tax;
+      localStorage.setItem("cart", JSON.stringify(state.cartItems));
+    },
   },
 });
 
