@@ -1,4 +1,4 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, type ActionFunction } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -8,6 +8,13 @@ import {
 import { FormInput } from "../components";
 import { Button } from "../components/ui/button";
 
+export const action: ActionFunction = async ({ request }): Promise<null> => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+  return null;
+};
+
 export default function Register() {
   return (
     <section className="h-screen grid place-items-center">
@@ -16,7 +23,7 @@ export default function Register() {
           <CardTitle className="text-center">Register</CardTitle>
         </CardHeader>
         <CardContent>
-          <Form>
+          <Form method="post">
             <FormInput
               type="text"
               name="username"
