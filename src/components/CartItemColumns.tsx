@@ -82,3 +82,7 @@ export const ThirdColumn = ({
 export const FourthColumn = ({ price }: { price: string }) => {
   return <p className="ml-auto font-medium">{formatAsDollars(price)}</p>;
 };
+
+export default function CartItemColumns() {
+  return <div>CartItemColumns</div>;
+}
