@@ -1,11 +1,30 @@
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
 import { FormInput, SubmitBtn } from "../components";
 import { Button } from "../components/ui/button";
+import { useAppDispatch } from "../hooks";
+import type { AxiosResponse } from "axios";
+import { customFetch } from "../utils";
+import { loginUser } from "../features/user/userSlice";
+import { toast } from "../hooks/use-toast";
 
 export default function Login() {
-  const loginAsGuestUser = () => {
-    console.log('Guest User')
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate()
+  const loginAsGuestUser = async ():Promise<void> => {
+    try {
+      const response:AxiosResponse = await customFetch.post('/auth/local', {
+        identifier: 'test@test.com',
+        password: 'secret'
+      })
+      const username = response.data.user.username;
+      const jwt = response.data.jwt;
+      dispatch(loginUser({username, jwt}))
+      navigate('/')
+    } catch (error) {
+      console.log(error);
+      toast({discription: 'Login failed'})
+    }
   }
   return <section className="h-screen grid place-items-center">
     <Card className="w-96">
