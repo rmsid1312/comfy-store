@@ -5,7 +5,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import { FormInput } from "../components";
+import { FormInput, SubmitBtn } from "../components";
 import { Button } from "../components/ui/button";
 import { customFetch } from "../utils";
 import { toast } from "../hooks/use-toast";
@@ -30,7 +30,7 @@ export const action: ActionFunction = async ({ request }): Promise<null | Respon
 export default function Register() {
   return (
     <section className="h-screen grid place-items-center">
-      <Card className="w-96 bg-muted">
+      <Card className="w-96">
         <CardHeader>
           <CardTitle className="text-center">Register</CardTitle>
         </CardHeader>
@@ -39,21 +39,16 @@ export default function Register() {
             <FormInput
               type="text"
               name="username"
-              defaultValue="test"
             ></FormInput>
             <FormInput
               type="text"
               name="email"
-              defaultValue="test@gmail.com"
             ></FormInput>
             <FormInput
               type="text"
               name="password"
-              defaultValue="secret"
             ></FormInput>
-            <Button type="submit" className="w-full mt-4">
-              Submit
-            </Button>
+            <SubmitBtn text="Register" className="w-full mt-4" />
             <p className="mt-4 text-center">
               Already member ?{" "}
               <Button asChild variant="link" type="button">
