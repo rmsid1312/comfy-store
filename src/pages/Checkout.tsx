@@ -23,7 +23,7 @@ export default function Checkout() {
   return (
     <>
       <SectionTitle text="Place your order" />
-      <div className="mt-8 grid grid-cols-2 ">
+      <div className="mt-8 grid grid-cols-2 items-center justify-start">
         <CheckoutForm />
         <CartTotals />
       </div>
