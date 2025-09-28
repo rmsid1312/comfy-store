@@ -45,7 +45,7 @@ export default function Register() {
               name="email"
             ></FormInput>
             <FormInput
-              type="text"
+              type="password"
               name="password"
             ></FormInput>
             <SubmitBtn text="Register" className="w-full mt-4" />
