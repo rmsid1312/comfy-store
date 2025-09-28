@@ -11,10 +11,10 @@ const initialState: CartState = {
   orderTotal: 0,
 };
 
-const getCartFromLocalStorage = (): CartState => {
-  const cartItem = localStorage.getItem("cart");
-  return cartItem ? JSON.parse(cartItem) : initialState;
-};
+// const getCartFromLocalStorage = (): CartState => {
+//   const cartItem = localStorage.getItem("cart");
+//   return cartItem ? JSON.parse(cartItem) : initialState;
+// };
 
 const cartSlice = createSlice({
   name: "cart",

@@ -3,7 +3,6 @@ import {
   constructPrevOrNextUrl,
   constructUrl,
   type OrdersResponse,
-  type ProductsResponseWithParams,
 } from "../utils";
 import {
   Pagination,

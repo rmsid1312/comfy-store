@@ -11,18 +11,24 @@ import { customFetch } from "../utils";
 import { toast } from "../hooks/use-toast";
 import { AxiosError } from "axios";
 
-export const action: ActionFunction = async ({ request }): Promise<null | Response> => {
+export const action: ActionFunction = async ({
+  request,
+}): Promise<null | Response> => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   try {
-    console.log(data);  
-    const result = await customFetch.post('/auth/local/register', data);
-    toast({description: 'Registered'})
-    return redirect('/login');
+    console.log(data);
+    const result = await customFetch.post("/auth/local/register", data);
+    console.log(result);
+    toast({ description: "Registered" });
+    return redirect("/login");
   } catch (error) {
     console.log(error);
-    const errorMsg = error instanceof AxiosError ? error.response?.data.error.message : 'Registraion Failed'    
-    toast({description: errorMsg})
+    const errorMsg =
+      error instanceof AxiosError
+        ? error.response?.data.error.message
+        : "Registraion Failed";
+    toast({ description: errorMsg });
     return null;
   }
 };
@@ -36,18 +42,9 @@ export default function Register() {
         </CardHeader>
         <CardContent>
           <Form method="post">
-            <FormInput
-              type="text"
-              name="username"
-            ></FormInput>
-            <FormInput
-              type="text"
-              name="email"
-            ></FormInput>
-            <FormInput
-              type="password"
-              name="password"
-            ></FormInput>
+            <FormInput type="text" name="username"></FormInput>
+            <FormInput type="text" name="email"></FormInput>
+            <FormInput type="password" name="password"></FormInput>
             <SubmitBtn text="Register" className="w-full mt-4" />
             <p className="mt-4 text-center">
               Already member ?{" "}

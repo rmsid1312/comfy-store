@@ -1,13 +1,11 @@
-import React from "react";
 import { Form, redirect, type ActionFunction } from "react-router-dom";
 import FormInput from "./FormInput";
 import SubmitBtn from "./SubmitBtn";
-import { store, type ReduxStore } from "../store";
+import { type ReduxStore } from "../store";
 import { toast } from "../hooks/use-toast";
 import { customFetch, type Checkout } from "../utils";
 import { formatAsDollars } from "../utils/formatAsDollars";
 import { clearItems } from "../features/cart/cartSlice";
-import axios from "axios";
 
 export const action =
   (store: ReduxStore): ActionFunction =>

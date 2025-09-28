@@ -12,16 +12,16 @@ export enum Mode {
 }
 
 type SelectProductAmountProps = {
-  mode: Mode.SingleProduct;
-  amount: number;
-  setAmount: React.Dispatch<React.SetStateAction<number>>;
-};
-
-type SelectCartItemAmountProps = {
-  mode: Mode.CartItem;
+  mode: Mode;
   amount: number;
   setAmount: (value: number) => void;
 };
+
+// type SelectCartItemAmountProps = {
+//   mode: Mode.CartItem;
+//   amount: number;
+//   setAmount: (value: number) => void;
+// };
 
 export default function SelectProductAmount({
   mode,

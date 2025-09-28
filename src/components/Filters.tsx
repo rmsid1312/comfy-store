@@ -8,7 +8,7 @@ import FormCheckbox from "./FormCheckbox";
 
 export default function Filters() {
   console.log(useLoaderData() as ProductsResponseWithParams);
-  const { meta, params } = useLoaderData() as ProductsResponseWithParams;
+  const { meta } = useLoaderData() as ProductsResponseWithParams;
   // const { search } = params;
 
   return (

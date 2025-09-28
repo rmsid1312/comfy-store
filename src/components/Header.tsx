@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
-import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useToast } from "../hooks/use-toast";
 import { clearItems } from "../features/cart/cartSlice";
@@ -8,16 +7,16 @@ import { logoutUser } from "../features/user/userSlice";
 
 export default function Header() {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
-  const {toast} = useToast()
+  const dispatch = useAppDispatch();
+  const { toast } = useToast();
 
-  const user = useAppSelector((state)=> state.userState.user);
+  const user = useAppSelector((state) => state.userState.user);
   const handleLogout = () => {
-    dispatch(clearItems())
-    dispatch(logoutUser())
-    toast({description: 'Logged Out'});
-    navigate('/')
-  }
+    dispatch(clearItems());
+    dispatch(logoutUser());
+    toast({ description: "Logged Out" });
+    navigate("/");
+  };
   return (
     <header>
       <div className="align-element flex justify-center items-center sm:justify-end py-2">
