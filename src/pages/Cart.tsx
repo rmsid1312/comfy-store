@@ -7,7 +7,7 @@ import { useAppSelector } from "../hooks";
 import { CartItemList, CartTotals, SectionTitle } from "../components";
 
 export default function Cart() {
-  const user = null;
+  const user = useAppSelector((state) => state.userState.user);
   const numItemsInCart = useAppSelector(
     (state) => state.cartState.numItemsInCart
   );
@@ -25,15 +25,9 @@ export default function Cart() {
         </div>
         <div className="lg:col-span-4 ml-4">
           <CartTotals />
-          {user ? (
             <Button asChild className="mt-8 w-full">
-              <Link to="/checkout">Proceed to checkout</Link>
+              {user ? <Link to="/checkout">Proceed to checkout</Link> : <Link to="/login">Please Login</Link>}
             </Button>
-          ) : (
-            <Button asChild className="mt-8 w-full">
-              <Link to="/login">Please Login</Link>
-            </Button>
-          )}
         </div>
       </div>
     </>
