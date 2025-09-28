@@ -1,4 +1,4 @@
-import { Form, Link, type ActionFunction } from "react-router-dom";
+import { Form, Link, redirect, type ActionFunction } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -7,12 +7,24 @@ import {
 } from "../components/ui/card";
 import { FormInput } from "../components";
 import { Button } from "../components/ui/button";
+import { customFetch } from "../utils";
+import { toast } from "../hooks/use-toast";
+import { AxiosError } from "axios";
 
-export const action: ActionFunction = async ({ request }): Promise<null> => {
+export const action: ActionFunction = async ({ request }): Promise<null | Response> => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-  console.log(data);
-  return null;
+  try {
+    console.log(data);  
+    const result = await customFetch.post('/auth/local/register', data);
+    toast({description: 'Registered'})
+    return redirect('/login');
+  } catch (error) {
+    console.log(error);
+    const errorMsg = error instanceof AxiosError ? error.response?.data.error.message : 'Registraion Failed'    
+    toast({description: errorMsg})
+    return null;
+  }
 };
 
 export default function Register() {
