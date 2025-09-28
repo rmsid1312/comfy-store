@@ -26,3 +26,4 @@ export { default as CartItemColumns } from "./CartItemColumns";
 export { default as CartItemList } from "./CartItemList";
 export { default as CartTotals } from "./CartTotals";
 export { default as SubmitBtn } from "./SubmitBtn";
+export { default as CheckoutForm } from "./CheckoutForm";
